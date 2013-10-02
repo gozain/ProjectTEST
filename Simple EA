@@ -86,3 +86,22 @@ if(FastMA < SlowMA && SellTicket == 0)
 }
 
 
+// Pip Point Function
+double PipPoint(string Currency)
+	{
+		int CalcDigits = MarketInfo(Currency,MODE_DIGITS);
+		if(CalcDigits == 2 || CalcDigits == 3) double CalcPoint = 0.01;
+		else if(CalcDigits == 4 || CalcDigits == 5) CalcPoint = 0.0001;
+
+		return(CalcPoint);
+	}
+
+// Get Slippage Function
+int GetSlippage(string Currency, int SlippagePips)
+	{
+		int CalcDigits = MarketInfo(Currency,MODE_DIGITS);
+		if(CalcDigits == 2 || CalcDigits == 4) double CalcSlippage = SlippagePips;
+		else if(CalcDigits == 3 || CalcDigits == 5) CalcSlippage = SlippagePips * 10;
+	
+		return(CalcSlippage);
+	}
